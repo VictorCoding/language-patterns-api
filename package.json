@@ -1,0 +1,29 @@
+{
+  "name": "language-patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "hapi": "^17.3.1",
+    "micro": "^9.1.4",
+    "request": "^2.85.0",
+    "twitter-node-client": "0.0.6"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "es6": true
+    }
+  },
+  "devDependencies": {
+    "micro-dev": "^2.2.2"
+  }
+}
