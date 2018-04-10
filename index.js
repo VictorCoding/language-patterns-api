@@ -1,4 +1,5 @@
 const Twitter = require('twitter-node-client').Twitter
+const cors = require('micro-cors')()
 
 const twitter = new Twitter({
   consumerKey: '6AnNhpNE7cyMpRaXzZuP9fGiA',
@@ -9,10 +10,22 @@ const twitter = new Twitter({
 })
 
 module.exports = (req, res) => {
+    const url = req.url;
+    const urlParams = url.split('&')
+    const paramValues = []
+
+    for (let i = 0; i < urlParams.length; i++) {
+      paramValues.push(urlParams[i].split('=')[1]);
+    }
+
+    console.log('paramValues: ', paramValues)
+    res.setHeader('Access-Control-Allow-Headers', 'access-control-allow-origin,allow-access-cross-origin')
+    res.setHeader('access-control-allow-origin', '*')
+
     return new Promise(function (resolve, reject) {
       twitter.getCustomApiCall(
         '/search/tweets.json',
-          { 'q': 'hacer', count: '100', geocode: '25.9369056,-97.4821958,5mi'},
+          { 'q': paramValues[0], count: '100', geocode: paramValues[1], result_type: paramValues[2]},
         function(error) {
           reject(error)
         },
